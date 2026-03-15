@@ -1,19 +1,19 @@
-# 🫏 Sliding Window Pattern (Explained for a Donkey)
+# 🪟 Sliding Window Pattern
 
-Imagine you are a donkey standing in front of a long line of buckets. Each bucket has some carrots inside.
+Imagine you are standing in front of a long line of buckets. Each bucket has some carrots inside.
 
 **[ 2 ]  [ 1 ]  [ 5 ]  [ 1 ]  [ 3 ]  [ 2 ]**
 
-Your owner says: *"Hey buddy, you can eat the carrots from **exactly 3 buckets that are next to each other**. Keep looking until you find the 3 buckets that give you the MOST carrots."*
+The goal is: *"Find the most carrots you can collect from **exactly 3 buckets that are next to each other**."*
 
-### The "Dumb Donkey" Way 🐴 (Brute Force):
+### The Slow Way (Brute Force):
 1. You look at buckets 1, 2, and 3. You add them up: **`2 + 1 + 5 = 8 carrots`**. You remember "8".
 2. Then you walk back to bucket 2. You look at buckets 2, 3, and 4: **`1 + 5 + 1 = 7 carrots`**.
 3. Then you walk back to bucket 3. You look at buckets 3, 4, and 5: **`5 + 1 + 3 = 9 carrots`**.
 
-*Why is this bad?* Because you keep counting the middle buckets over and over! You counted the `5` bucket three times. That is too much thinking!
+*Why is this bad?* Because you keep counting the middle buckets over and over! You counted the `5` bucket three times. That is too much repeated work!
 
-### The "Smart Donkey" Way 🦄 (Sliding Window):
+### The Fast Way (Sliding Window):
 You build a special wooden window frame. It is exactly wide enough to show 3 buckets.
 
 1. You put the frame over the first 3 buckets: **`[ 2, 1, 5 ]`**. That is 8 carrots.
@@ -40,26 +40,21 @@ If an interviewer gives you a problem, look for these **three clues**:
 
 ## 📊 Drawing the Sliding Window Frame
 
-Here is your smart donkey frame in action. 
+Here is a look at the frame in action. 
 
-*Red means old frame. Green means new frame. Look how we just drop the `2` and pick up the `1`!*
+*We drop the `2` and pick up the `1`!*
 
 ```mermaid
 flowchart LR
-    style A1 fill:#ffcccc,stroke:#333,stroke-width:2px
-    style B1 fill:#ffcccc,stroke:#333,stroke-width:2px
-    style C1 fill:#ffcccc,stroke:#333,stroke-width:2px
-    
-    style B2 fill:#ccffcc,stroke:#333,stroke-width:2px
-    style C2 fill:#ccffcc,stroke:#333,stroke-width:2px
-    style D2 fill:#ccffcc,stroke:#333,stroke-width:2px
+    classDef oldFrame fill:#ffcccc,stroke:#333,stroke-width:2px;
+    classDef newFrame fill:#ccffcc,stroke:#333,stroke-width:2px;
 
-    subgraph Step 1: Start (Window Size = 3)
-    A1[ 2 ] --- B1[ 1 ] --- C1[ 5 ] --- D1[ 1 ] --- E1[ 3 ] --- F1[ 2 ]
+    subgraph Step 1: Start Window Size = 3
+    A1[ 2 ]:::oldFrame --- B1[ 1 ]:::oldFrame --- C1[ 5 ]:::oldFrame --- D1[ 1 ] --- E1[ 3 ] --- F1[ 2 ]
     end
 
-    subgraph Step 2: Push Right! (Minus 2, Plus 1)
-    A2[ 2 ] --- B2[ 1 ] --- C2[ 5 ] --- D2[ 1 ] --- E2[ 3 ] --- F2[ 2 ]
+    subgraph Step 2: Push Right Minus 2, Plus 1
+    A2[ 2 ] --- B2[ 1 ]:::newFrame --- C2[ 5 ]:::newFrame --- D2[ 1 ]:::newFrame --- E2[ 3 ] --- F2[ 2 ]
     end
 ```
 

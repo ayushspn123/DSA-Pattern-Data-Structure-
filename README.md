@@ -39,7 +39,7 @@ This guide details the **Top 21 Must-Know DSA Patterns** required for FAANG, how
 
 ---
 
-### 1. Sliding Window 🪟
+### 1. [Sliding Window 🪟](./sliding%20window/README.md)
 **Concept:** Maintain a continuous window (subset) of data over an array/string to perform optimal calculations instead of computing overlapping segments repeatedly.
 **Identification:** "Longest/shortest substring", "subarray sum", "max/min window".
 
